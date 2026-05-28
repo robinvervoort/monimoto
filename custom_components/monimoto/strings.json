@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Monimoto",
+        "description": "Enter your Monimoto account email address. You will receive a verification code by email.",
+        "data": {
+          "email": "Email address",
+          "api_host": "API host",
+          "poll_interval": "Poll interval (seconds)",
+          "verify_ssl": "Verify SSL"
+        }
+      },
+      "authorize": {
+        "title": "Confirm email code",
+        "description": "Enter the verification code sent to {email}.",
+        "data": {
+          "email_code": "Email code"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect",
+      "authorize_failed": "Authorization failed"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Monimoto options",
+        "data": {
+          "poll_interval": "Poll interval (seconds)"
+        }
+      }
+    }
+  }
+}
