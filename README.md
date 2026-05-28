@@ -63,6 +63,24 @@ For each Monimoto tracker on your account, the integration creates:
 
 After setup you can change the **poll interval** (default: 900 s / 15 min) via the integration's **Configure** button.
 
+## Troubleshooting — 417 "Update the app" error
+
+The Monimoto API authenticates API clients using a password embedded in the official app binary. If Monimoto releases a new app version and rotates this password, the integration will receive HTTP 417 until the new password is entered.
+
+### How to find the current API password (Android)
+
+1. **Install [HTTPToolkit](https://httptoolkit.com/android/)** on your desktop and its companion app on your phone.  
+   *(Alternative: [PCAPdroid](https://play.google.com/store/apps/details?id=com.emanuelef.remote_capture) — no certificate required.)*
+2. Start intercepting, then open the Monimoto app and tap **Log in**.
+3. In HTTPToolkit, find the `POST https://octopus-lb.monimoto.com/auth/login` request.
+4. Copy the value of the **`Authorization`** header — it looks like `Basic YXBwL...`.
+5. Decode the Base64 part (e.g. `echo "YXBwL..." | base64 -d` in a terminal). The result is `username:password`.
+6. The **password** part (after the colon) is what you need.
+
+### Entering the password in Home Assistant
+
+When adding the integration, paste the password into the **"API password"** field. Leave it blank to use the built-in default.
+
 ## Notes
 
 - The Monimoto API is cloud-based (`cloud_polling`). Location updates depend on the tracker reporting interval, not just the HA poll interval.
