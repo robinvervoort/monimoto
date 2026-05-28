@@ -7,6 +7,7 @@ from typing import Any
 import aiohttp
 
 from .const import (
+    APP_USER_AGENT,
     BASIC_AUTH_PASS,
     BASIC_AUTH_USER,
     ENDPOINT_ALARM_TMPL,
@@ -104,14 +105,20 @@ class MonimotoApiClient:
     def _basic_auth(self) -> aiohttp.BasicAuth:
         return aiohttp.BasicAuth(BASIC_AUTH_USER, BASIC_AUTH_PASS)
 
+    def _common_headers(self) -> dict[str, str]:
+        return {
+            "User-Agent": APP_USER_AGENT,
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Accept-Language": "en",
+        }
+
     def _bearer_headers(self) -> dict[str, str]:
         if not self._token:
             raise MonimotoAuthError("Not authenticated")
         return {
+            **self._common_headers(),
             "Authorization": f"Bearer {self._token.access_token}",
-            "Accept-Language": "en",
-            "Accept": "application/json",
-            "Content-Type": "application/json",
         }
 
     async def async_request_email_login(self) -> LoginChallenge:
@@ -125,6 +132,7 @@ class MonimotoApiClient:
         async with self._session.post(
             url,
             json=payload,
+            headers=self._common_headers(),
             auth=self._basic_auth(),
             ssl=self._verify_ssl,
         ) as resp:
@@ -156,6 +164,7 @@ class MonimotoApiClient:
         async with self._session.post(
             url,
             json=payload,
+            headers=self._common_headers(),
             auth=self._basic_auth(),
             ssl=self._verify_ssl,
         ) as resp:
@@ -174,6 +183,7 @@ class MonimotoApiClient:
         async with self._session.post(
             url,
             json=payload,
+            headers=self._common_headers(),
             auth=self._basic_auth(),
             ssl=self._verify_ssl,
         ) as resp:
