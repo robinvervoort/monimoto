@@ -3,9 +3,10 @@
     "step": {
       "user": {
         "title": "Monimoto",
-        "description": "Enter your Monimoto account email address. You will receive a verification code by email.",
+        "description": "Enter your Monimoto account email address. You will receive a verification code by email.\n\nLeave 'API password' blank to use the built-in default. If you see a 417 error, you need to capture your phone's traffic (see README) and paste the correct password here.",
         "data": {
           "email": "Email address",
+          "basic_auth_pass": "API password (leave blank for default)",
           "api_host": "API host",
           "poll_interval": "Poll interval (seconds)",
           "verify_ssl": "Verify SSL"

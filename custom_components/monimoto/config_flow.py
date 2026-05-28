@@ -10,7 +10,9 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .api import MonimotoApiClient, MonimotoAuthError
 from .const import (
+    BASIC_AUTH_PASS,
     CONF_API_HOST,
+    CONF_BASIC_AUTH_PASS,
     CONF_EMAIL,
     CONF_POLL_INTERVAL,
     CONF_VERIFY_SSL,
@@ -54,6 +56,7 @@ class MonimotoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 email=user_input[CONF_EMAIL],
                 api_host=user_input[CONF_API_HOST],
                 verify_ssl=user_input[CONF_VERIFY_SSL],
+                basic_auth_pass=user_input.get(CONF_BASIC_AUTH_PASS) or None,
             )
 
             try:
@@ -72,6 +75,7 @@ class MonimotoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         schema = vol.Schema(
             {
                 vol.Required(CONF_EMAIL): str,
+                vol.Optional(CONF_BASIC_AUTH_PASS, default=""): str,
                 vol.Required(CONF_API_HOST, default=DEFAULT_API_HOST): str,
                 vol.Required(CONF_POLL_INTERVAL, default=DEFAULT_POLL_INTERVAL): int,
                 vol.Required(CONF_VERIFY_SSL, default=True): bool,
@@ -98,6 +102,7 @@ class MonimotoConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 email=self._user_input[CONF_EMAIL],
                 api_host=self._user_input[CONF_API_HOST],
                 verify_ssl=self._user_input[CONF_VERIFY_SSL],
+                basic_auth_pass=self._user_input.get(CONF_BASIC_AUTH_PASS) or None,
             )
 
             try:

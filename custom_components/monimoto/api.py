@@ -89,11 +89,13 @@ class MonimotoApiClient:
         email: str,
         api_host: str,
         verify_ssl: bool,
+        basic_auth_pass: str | None = None,
     ) -> None:
         self._session = session
         self._email = email.strip().lower()
         self._api_host = api_host.rstrip("/")
         self._verify_ssl = verify_ssl
+        self._basic_auth_pass = basic_auth_pass or BASIC_AUTH_PASS
         self._token: TokenData | None = None
 
     @property
@@ -104,7 +106,7 @@ class MonimotoApiClient:
         self._token = token
 
     def _basic_auth(self) -> aiohttp.BasicAuth:
-        return aiohttp.BasicAuth(BASIC_AUTH_USER, BASIC_AUTH_PASS)
+        return aiohttp.BasicAuth(BASIC_AUTH_USER, self._basic_auth_pass)
 
     def _common_headers(self) -> dict[str, str]:
         return {

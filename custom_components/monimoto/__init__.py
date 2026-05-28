@@ -11,6 +11,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from .api import MonimotoApiClient, TokenData
 from .const import (
     CONF_API_HOST,
+    CONF_BASIC_AUTH_PASS,
     CONF_EMAIL,
     CONF_VERIFY_SSL,
     DOMAIN,
@@ -51,6 +52,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         email=entry.data[CONF_EMAIL],
         api_host=entry.data[CONF_API_HOST],
         verify_ssl=entry.data[CONF_VERIFY_SSL],
+        basic_auth_pass=entry.data.get(CONF_BASIC_AUTH_PASS) or None,
     )
 
     token_data = entry.data.get(TOKEN_STORAGE_KEY)

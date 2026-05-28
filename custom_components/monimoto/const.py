@@ -7,6 +7,7 @@ CONF_EMAIL = "email"
 CONF_POLL_INTERVAL = "poll_interval"
 CONF_API_HOST = "api_host"
 CONF_VERIFY_SSL = "verify_ssl"
+CONF_BASIC_AUTH_PASS = "basic_auth_pass"
 
 DEFAULT_API_HOST = "https://octopus-lb.monimoto.com"
 DEFAULT_POLL_INTERVAL = 900
