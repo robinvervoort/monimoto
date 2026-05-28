@@ -111,6 +111,7 @@ class MonimotoApiClient:
             "Accept": "application/json",
             "Content-Type": "application/json",
             "Accept-Language": "en",
+            "X-App-Version": APP_VERSION,
         }
 
     def _bearer_headers(self) -> dict[str, str]:
@@ -128,6 +129,7 @@ class MonimotoApiClient:
             "firebase_user_id": None,
             "language": "en",
             "phone": None,
+            "platform": "android",
         }
         async with self._session.post(
             url,

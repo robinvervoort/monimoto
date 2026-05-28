@@ -28,7 +28,7 @@ ENDPOINT_ALARM_TMPL = "/device/{blename}/alarm"
 BASIC_AUTH_USER = "app-basic-auth-octopus-prod"
 BASIC_AUTH_PASS = "cBksj9Ipw2Bxn399284hd"
 
-APP_VERSION = "1.15.1-prod"
+APP_VERSION = "2.0.8"
 APP_USER_AGENT = f"Monimoto/{APP_VERSION} (Android)"
 
 SERVICE_REFRESH = "refresh"
