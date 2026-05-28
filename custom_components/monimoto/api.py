@@ -8,6 +8,7 @@ import aiohttp
 
 from .const import (
     APP_USER_AGENT,
+    APP_VERSION,
     BASIC_AUTH_PASS,
     BASIC_AUTH_USER,
     ENDPOINT_ALARM_TMPL,
