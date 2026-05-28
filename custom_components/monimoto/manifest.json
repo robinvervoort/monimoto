@@ -1,0 +1,13 @@
+{
+  "domain": "monimoto",
+  "name": "Monimoto",
+  "codeowners": ["@robinvervoort"],
+  "config_flow": true,
+  "documentation": "https://github.com/robinvervoort/monimoto",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/robinvervoort/monimoto/issues",
+  "loggers": ["custom_components.monimoto"],
+  "requirements": [],
+  "version": "1.0.0"
+}
